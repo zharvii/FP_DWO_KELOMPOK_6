@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<Schema name="PurchaseFact">
+  <!--
+  == This software is subject to the terms of the Eclipse Public License v1.0
+  == Agreement, available at the following URL:
+  == http://www.eclipse.org/legal/epl-v10.html.
+  == You must accept the terms of that agreement to use this software.
+  ==
+  == Copyright (C) 2000-2005 Julian Hyde
+  == Copyright (C) 2005-2011 Pentaho and others
+  == All Rights Reserved.
+  -->
+
+  <!-- Shared dimensions -->
+
+
+
+  <!-- Sales -->
+  <Cube name="Purchase" defaultMeasure="TotalOutcomes">
+    <!-- Use annotations to provide translations of this cube's caption and
+       description into German and French. Use of annotations in this manner is
+       experimental and unsupported; just for testing right now. -->
+
+    <Table name="fact_purchase"/>
+
+    <Dimension name="Time" foreignKey="timeID">
+      <Hierarchy hasAll="true" allMemberName="All Times" primaryKey="timeID">
+        <Table name="dim_time"/>
+        <Level name="Year" column="Year" type="Numeric" uniqueMembers="true" levelType="TimeYears"/>
+        <Level name="Quarter" column="Quarter" uniqueMembers="false" type="Numeric" levelType="TimeQuarters"/>
+        <Level name="Month" column="Month" uniqueMembers="false" type="Numeric" levelType="TimeMonths"/>
+        <Level name="Date" column="Date" uniqueMembers="false" type="Numeric" levelType="TimeDays"/>
+      </Hierarchy>
+    </Dimension>
+
+     <Dimension name="Employee" foreignKey="EmployeeID">
+      <Hierarchy hasAll="true" allMemberName="All Employees" primaryKey="EmployeeID">
+        <Table name="dim_employee"/>
+        <Level name="Titles" column="Title" />
+        <Level name="Gender" column="Gender" />
+        <Level name="Name" column="Name">
+        <Property name="Phone" column="Phone"/>
+        <Property name="Email" column="Email"/>
+        </Level>
+       
+      </Hierarchy>
+    </Dimension>
+
+     <Dimension name="Vendor" foreignKey="VendorID">
+      <Hierarchy hasAll="true" allMemberName="All Vendors" primaryKey="VendorID">
+        <Table name="dim_vendor"/>
+        <Level name="Name" column="VendorName">
+         <Property name="Address" column="Address"/>
+        <Property name="ContactName" column="ContactName"/>
+
+        <Property name="Phone" column="Phone"/>
+        <Property name="Email" column="Email"/>
+        </Level>
+       
+      </Hierarchy>
+    </Dimension>
+
+    <Dimension name="Product" foreignKey = "ProductID">
+      <Hierarchy hasAll="true" allMemberName="All Products" primaryKey="ProductID">
+        <Table name="dim_product"/>
+        <Level name="Category" column="Category"/>
+        <Level name="SubCategory" column="SubCategory"/>
+        <Level name="Name" column="ProductName"/>
+      </Hierarchy>
+    </Dimension>
+
+   
+
+   
+
+    <!-- <Measure name="Total Incomes" column="SalesAmount" aggregator="sum" formatString="Standard"/> -->
+    <Measure name="TotalOutcomes" column="PurchaseAmount" aggregator="sum" formatString="Standard"/>
+    <!-- <Measure name="TotalOrder" column="SalesOrderNumber" aggregator="distinct-count" formatString="Standard"/> -->
+  </Cube>
+
+</Schema>
