@@ -6,6 +6,9 @@ Nama Kelompok : <br />
 4.Zharvi Achmadha (20082010017)  <br />
 5.Muhammad Chairuladnan Syaifullah I. (20082010020) <br />
 
+Framework : Codeigniter<br />
+Db Name : dwadv2022 <br />
+
 Login Dashboard<br />
 Username : zharvi<br />
 Password : 123
