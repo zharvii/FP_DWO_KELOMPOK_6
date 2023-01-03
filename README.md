@@ -7,7 +7,7 @@ Nama Kelompok : <br />
 5.Muhammad Chairuladnan Syaifullah I. (20082010020) <br />
 
 Framework : Codeigniter<br />
-Db Name : dwadv2022 <br />
+Db Name : dwadv22 <br />
 
 Login Dashboard<br />
 Username : zharvi<br />
